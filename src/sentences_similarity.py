@@ -3,7 +3,8 @@ import pandas as pd
 import spacy
 import en_core_web_md
 
-from constants import DATASET_PATH, MAX_SIMILAR_SENTENCES_TO_SHOW
+from constants import (DATASET_PATH, TEST_SENTENCE, 
+                       MAX_SIMILAR_SENTENCES_TO_SHOW)
 
 def show_sentences_similarity():
     """ 
@@ -20,8 +21,8 @@ def show_sentences_similarity():
     nlp = en_core_web_md.load()
 
     # Create a Doc from the text of a test sentence
-    example_document = nlp.make_doc(sentences.pop(11))
-    print(f'\nTest sentence: "{example_document.text}"')
+    example_document = nlp.make_doc(TEST_SENTENCE)
+    print(f'\nTest sentence: "{TEST_SENTENCE}"')
 
     # Find some similar and non similar sentences to the test sentence
     print('Finding some similar and non similar sentences...')

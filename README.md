@@ -31,7 +31,7 @@ python src/vectorize.py
 ```
 
 ## Sentences similarity
-Show similarity between sentences. We show some similar and non similar sentences to a test sentence.
+Show similarity between sentences. We show some similar and non similar sentences to a test sentence. The test sentence can be modified in the file `constants.py`.
 ```shell
 python src/sentences_similarity.py
 ```
