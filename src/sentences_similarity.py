@@ -6,6 +6,7 @@ import en_core_web_md
 from constants import (DATASET_PATH, TEST_SENTENCE, 
                        MAX_SIMILAR_SENTENCES_TO_SHOW)
 
+
 def show_sentences_similarity():
     """ 
     Show some similar and non similar sentences to a test sentence.

@@ -7,7 +7,7 @@ In this repository, we create a **sentence embedding** for each sentence of the 
 
 We use [spaCy](https://spacy.io/), in particular, the pretrained statistical model [en_core_web_md](https://spacy.io/models/en#en_core_web_md) which contains 20k unique 300-dim word vectors, and it was trained using the GloVe algorithm on the Common Crawl dataset. 
 
-To compute the embeddings of the sentences, spaCy, by default, will take an average of their token vectors. Note that this type of vectorization does not take into account the order of the words in the sentences (for that we can use contextualized word embeddings with models like ELMo or BERT) (a review of different text vectorizations techniques can be seen [here]()). 
+To compute the embeddings of the sentences, spaCy, by default, will take an average of their token vectors. Note that this type of vectorization does not take into account the order of the words in the sentences (for that we can use contextualized word embeddings with models like ELMo or BERT) (a review of different text vectorizations techniques is available [here](https://colab.research.google.com/drive/13wnd2aB7w2NCdMp-mE1k9XwsqbHjhbNM?usp=sharing)). 
 
 Finally, we show the capacity of the vectorization to estimate the similarity between sentences.
 
@@ -17,10 +17,11 @@ Download the dataset.
 wget https://bitbucket.org/delectateam/nlptrainingexam/raw/aa9ea86fa4795ef2bcba2af622add9a8e69c6621/resources/vectorization/corpus.csv -P data/raw
 ```
 
-Create virtual environment via venv or conda e install requirements.
+Create virtual environment, and install requirements.
 ```shell
 cd src
-# Create virtual env
+python3 -m virtualenv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 

@@ -3,8 +3,8 @@ import os
 
 PROJECT_PATH = os.getcwd()
 DATASET_PATH = f'{PROJECT_PATH}/data/raw/corpus.csv'
-EMBEDDINGS_OF_SENTENCES_PATH = (f'{PROJECT_PATH}/data/processed/'
-                                'embeddings_of_sentences.csv')
+SENTENCES_EMBEDDINGS_PATH = (f'{PROJECT_PATH}/data/processed/'
+                                'sentence_embeddings.csv')
 
 # The test sentence used to find similar sentences
 # when showing similarity between sentences

@@ -3,7 +3,8 @@ from tqdm import tqdm
 import pandas as pd
 import en_core_web_md
 
-from constants import DATASET_PATH, EMBEDDINGS_OF_SENTENCES_PATH
+from constants import DATASET_PATH, SENTENCES_EMBEDDINGS_PATH
+
 
 def vectorize_reviews():
     """ 
@@ -21,19 +22,17 @@ def vectorize_reviews():
     print('Loading the spaCy statistical model...')
     nlp = en_core_web_md.load()
 
-
     # Get the embeddings of the sentences
     print('Getting embeddings of the sentences')
-    embeddings_of_sentences = vectorize_sentences(nlp, sentences)
+    sentence_embeddings = vectorize_sentences(nlp, sentences)
     print('Obtained embeddings of the sentences')
     
-
     # Convert the embeddings of the sentences to a DataFrame
-    embeddings_of_sentences_df = pd.DataFrame(embeddings_of_sentences)
-    print(f'Lenght of the embeddings: {embeddings_of_sentences_df.shape[1]}')
+    sentence_embeddings_df = pd.DataFrame(sentence_embeddings)
+    print(f'Lenght of the embeddings: {sentence_embeddings_df.shape[1]}')
     # Save the embeddings of the sentences
-    embeddings_of_sentences_df.to_csv(EMBEDDINGS_OF_SENTENCES_PATH, index=False)
-    print(f'Embeddings of the sentences saved in {EMBEDDINGS_OF_SENTENCES_PATH}')    
+    sentence_embeddings_df.to_csv(SENTENCES_EMBEDDINGS_PATH, index=False)
+    print(f'Embeddings of the sentences saved in {SENTENCES_EMBEDDINGS_PATH}')    
 
 
 def vectorize_sentences(nlp, sentences):
@@ -41,15 +40,15 @@ def vectorize_sentences(nlp, sentences):
     Get the embeddings/vectors of the sentences. 
     """
 
-    embeddings_of_sentences = []
+    sentence_embeddings = []
     for sentence in tqdm(sentences):
         # Create a Doc from the text of the sentence
         document = nlp.make_doc(sentence)
         # Get the embedding of the sentence (average of its token vectors)
-        sentence_embeddings = document.vector
-        embeddings_of_sentences.append(sentence_embeddings)
+        sentence_embedding = document.vector
+        sentence_embeddings.append(sentence_embedding)
 
-    return embeddings_of_sentences
+    return sentence_embeddings
 
 if __name__ == "__main__":
     vectorize_reviews()
