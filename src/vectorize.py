@@ -44,9 +44,9 @@ def vectorize_sentences(nlp, sentences):
     embeddings_of_sentences = []
     for sentence in tqdm(sentences):
         # Create a Doc from the text of the sentence
-        doc = nlp.make_doc(sentence)
+        document = nlp.make_doc(sentence)
         # Get the embedding of the sentence (average of its token vectors)
-        sentence_embeddings = doc.vector
+        sentence_embeddings = document.vector
         embeddings_of_sentences.append(sentence_embeddings)
 
     return embeddings_of_sentences

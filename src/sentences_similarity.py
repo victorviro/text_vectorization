@@ -20,8 +20,8 @@ def show_sentences_similarity():
     nlp = en_core_web_md.load()
 
     # Create a Doc from the text of a test sentence
-    example_doc = nlp.make_doc(sentences.pop(11))
-    print(f'\nTest sentence: "{example_doc.text}"')
+    example_document = nlp.make_doc(sentences.pop(11))
+    print(f'\nTest sentence: "{example_document.text}"')
 
     # Find some similar and non similar sentences to the test sentence
     print('Finding some similar and non similar sentences...')
@@ -29,32 +29,40 @@ def show_sentences_similarity():
     non_similar_sentences = []
     index = 0
     # Define a bool variable to control when stop of finding sentences
-    stop_finding_similar_sentences = False
-    while not stop_finding_similar_sentences:
+    stop_finding_sentences = False
+    while not stop_finding_sentences:
 
         # Create a Doc from the text of the sentence
-        doc = nlp.make_doc(sentences[index])
+        document = nlp.make_doc(sentences[index])
 
         # Find large enough sentences
-        if len(doc.text) > 7:
+        if len(document.text) > 7:
 
             # Check if doc is valid, including having a valid word vector
-            if doc and doc.vector_norm:
+            if document and document.vector_norm:
 
                 # Compute similarity between the sentences
-                similarity = example_doc.similarity(doc)
+                similarity = example_document.similarity(document)
             
                 if similarity > 0.9:
-                    similar_sentences.append(doc.text)
+                    similar_sentences.append(document.text)
                 if similarity < 0.1:
-                    non_similar_sentences.append(doc.text)
+                    non_similar_sentences.append(document.text)
 
-        # Stop find sentences when we have at least three sentences or
-        # there are no more sentences
-        stop_finding_similar_sentences = (
-            len(similar_sentences) >= MAX_SIMILAR_SENTENCES_TO_SHOW and
-            len(non_similar_sentences) >= MAX_SIMILAR_SENTENCES_TO_SHOW or
-            index >= (len(sentences)-1)
+        # Stop find sentences when we have at least three similar sentences 
+        # and three non similar sentences. Or if there are no more sentences
+        enough_similar_sentences = (
+            len(similar_sentences) >= MAX_SIMILAR_SENTENCES_TO_SHOW
+        )
+        enough_non_similar_sentences = (
+            len(non_similar_sentences) >= MAX_SIMILAR_SENTENCES_TO_SHOW
+        )
+        there_are_more_sentences = index < (len(sentences)-1)
+
+        stop_finding_sentences = (
+            enough_similar_sentences and
+            enough_non_similar_sentences or
+            not there_are_more_sentences
         )
         index += 1
         
