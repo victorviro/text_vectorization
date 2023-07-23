@@ -1,13 +1,13 @@
 # Vectorization of reviews with sentence embeddings
 
 ## Description
-In this repository, we create a **sentence embedding** for each sentence of the dataset. 
+In this repository, we create a **sentence embedding** for each sentence of the dataset. The dataset contains 23000 sentences of restaurant reviews.
 
 ## Details
 
-We use [spaCy](https://spacy.io/), in particular, the pretrained statistical model [en_core_web_md](https://spacy.io/models/en#en_core_web_md) which contains 20k unique 300-dim word vectors, and it was trained using the GloVe algorithm on the Common Crawl dataset. 
+We use [spaCy](https://spacy.io/), in particular, the pre-trained statistical model [en_core_web_md](https://spacy.io/models/en#en_core_web_md) which contains 20k unique 300-dim word vectors, and it was trained using the GloVe algorithm on the Common Crawl dataset. A review of different text vectorizations techniques, including GloVe, is available [here](https://nbviewer.jupyter.org/github/victorviro/Deep_learning_python/blob/master/Text_Vectorization_NLP.ipynb).
 
-To compute the embeddings of the sentences, spaCy, by default, will take an average of their token vectors. Note that this type of vectorization does not take into account the order of the words in the sentences (for that we can use contextualized word embeddings with models like ELMo or BERT) (a review of different text vectorizations techniques is available [here](https://colab.research.google.com/drive/13wnd2aB7w2NCdMp-mE1k9XwsqbHjhbNM?usp=sharing)). 
+To compute the embeddings of the sentences, spaCy, by default, will take an average of their token vectors. Note that this type of vectorization does not take into account the order of the words in the sentences (for that we can use contextualized word embeddings with models like ELMo or BERT). 
 
 Finally, we show the capacity of the vectorization to estimate the similarity between sentences.
 
